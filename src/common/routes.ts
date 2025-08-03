@@ -1,5 +1,8 @@
 export const ROUTES = {
   dashboard: "/",
+  auth: {
+    login: "/login",
+  },
   post: {
     list: "/post",
     add: "/post/add",

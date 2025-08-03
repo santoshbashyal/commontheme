@@ -1,14 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { HomeLayoutPage } from "../components/layout/HomeLayoutPage";
 import HomePage from "../pages/home/home-page";
-// import PostListPage from "../pages/posts/post-list/post-list";
 import { ROUTES } from "../common/routes";
 import AddPost from "../pages/post/post-add/add-post";
 import { CategoryListPage } from "../pages/category/category-list/categry-list";
 import { CategoryAddPage } from "../pages/category/add-category/CategoryAddPage";
 import { UsersAddPage } from "../pages/users/add-new/UsersAddPage";
 import { PagesAdd } from "../pages/pages-/add-pages/PagesAdd";
-// import { PagesList } from "../pages/pages-/list-pages/pages-list";
 import PostListPage from "../pages/post/post-list/PostListPage";
 import UserListPage from "../pages/users/list-users/users-list";
 import PageListPage from "../pages/pages-/list-pages/pages-list";
@@ -18,9 +16,13 @@ import MembersListPage from "../pages/members/list-members/members-list";
 import Settings from "../pages/settings/Settings";
 import MembersAddPage from "../pages/members/add-new/MemberAddPage";
 import { RolesAddPage } from "../pages/roles/add-roles/RolesAddPage";
-// import { UserListPage } from "../pages/users/list-users/users-list";
+import LoginPage from "../pages/Auth/login/Login";
 
 const router = createBrowserRouter([
+  {
+    element: <LoginPage />,
+    path: ROUTES.auth.login,
+  },
   {
     element: <HomeLayoutPage />,
     children: [

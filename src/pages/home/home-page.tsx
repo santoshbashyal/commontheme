@@ -1,7 +1,11 @@
-import LoginPage from "../Auth/login/LoginPage";
+import AddPost from "../post/post-add/add-post";
 
 const HomePage = () => {
-  return <LoginPage />;
+  return (
+    <>
+      <AddPost />
+    </>
+  );
 };
 
 export default HomePage;
