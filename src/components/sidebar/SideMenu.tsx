@@ -8,7 +8,6 @@ const SideMenu = () => {
       <div className=" w-[212px] p-4 ">
         <ImageName />
         <div className="flex flex-col mt-4">
-          <div className="px-3 py-1 text-gray-400">Dashboard</div>
           <div className="flex  p-2 rounded-2xl  items-center my-1 gap-2 ">
             <div>
               <img src="settings.svg" alt="" />
