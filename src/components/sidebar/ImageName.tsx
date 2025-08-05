@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { IoLogOutOutline } from "react-icons/io5";
+import { useNavigate } from "react-router";
 
 const ImageName = () => {
   const [open, setIsOpen] = useState(false);
   const toggleDropDown = () => setIsOpen((prev) => !prev);
-
+  const navigate = useNavigate();
   return (
     <>
       <div
@@ -18,7 +19,11 @@ const ImageName = () => {
       </div>
 
       {/* Sliding Dropdown */}
-      <div
+      <button
+        onClick={() => {
+          localStorage.removeItem("token");
+          navigate("/login");
+        }}
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
           open ? "max-h-20 opacity-100 mt-3" : "max-h-0 opacity-0"
         }`}
@@ -29,7 +34,7 @@ const ImageName = () => {
           </div>
           <div className="text-red-500">Logout</div>
         </div>
-      </div>
+      </button>
     </>
   );
 };
