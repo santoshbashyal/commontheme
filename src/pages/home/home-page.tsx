@@ -1,9 +1,9 @@
-import AddPost from "../post/post-add/add-post";
+import Dashboard from "../dashboard/Dashboard";
 
 const HomePage = () => {
   return (
     <>
-      <AddPost />
+      <Dashboard />
     </>
   );
 };
