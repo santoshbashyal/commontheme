@@ -1,18 +1,26 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 interface ImageUploaderProps {
   title: string;
   imageBoxSize: string;
+  value?: string | null; //controlled value
+  onchange?: (val: string | null) => void; //controlled change handler
 }
 
-const ImageUploader = ({ title, imageBoxSize }: ImageUploaderProps) => {
-  const [image, setImage] = useState<string | null>(null);
+const ImageUploader = ({
+  title,
+  imageBoxSize,
+  value,
+  onchange,
+}: ImageUploaderProps) => {
+  // const [image, setImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]; //get the file
     if (file) {
       const imageURL = URL.createObjectURL(file); //make a preview url
-      setImage(imageURL); //save image url into state
+      // setImage(imageURL); //save image url into state
+      onchange?.(imageURL); //send new value to react-hook-form
     }
   };
   const handleClick = () => {
@@ -20,7 +28,7 @@ const ImageUploader = ({ title, imageBoxSize }: ImageUploaderProps) => {
   };
   return (
     <>
-      <div className="flex items-center text-gray-600  justify-between mb-4">
+      <div className="flex  items-center text-gray-600  justify-between mb-4">
         <div>{title} </div>
         <div>
           <img src="/Dots-3.svg" alt="menu icon" />
@@ -32,10 +40,10 @@ const ImageUploader = ({ title, imageBoxSize }: ImageUploaderProps) => {
         onClick={handleClick}
         className={` bg-gray-100 cursor-pointer flex items-center justify-center mb-4 ${imageBoxSize}`}
       >
-        {image ? (
+        {value ? (
           <img
             className="h-full w-full object-fill rounded-xl"
-            src={image}
+            src={value}
             alt=""
           />
         ) : (
@@ -53,7 +61,7 @@ const ImageUploader = ({ title, imageBoxSize }: ImageUploaderProps) => {
       />
 
       {/* replace image text */}
-      {image && (
+      {value && (
         <div
           onClick={handleClick} //click to upload again
           className="text-sm text-gray-400 mt-2 mb-4 flex justify-end cursor-pointer"

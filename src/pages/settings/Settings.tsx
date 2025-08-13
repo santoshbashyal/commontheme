@@ -1,41 +1,99 @@
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
+import { InputTitle } from "../../components/add-new/InputTitle";
 import ImageUploader from "../../components/add-post/right-container/ImageUploader";
 import TextBox from "../../components/add-post/TextBox";
-import SettingsTitle from "./SettingsTitle";
+
+type FormValues = {
+  name: string;
+  logo: string;
+  favicon: string;
+  metaDescription: string;
+};
 
 const Settings = () => {
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      name: "",
+      logo: "",
+      favicon: "",
+      metaDescription: "",
+    },
+  });
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+  };
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mt-6 w-full  px-4 ">
         <div className="w-[90%] mx-auto ">
-          <SettingsTitle />
+          <Controller
+            control={control}
+            name="name"
+            render={({ field }) => (
+              <InputTitle
+                value={field.value}
+                onChange={field.onChange}
+                placeholder="Settings Title"
+              />
+            )}
+          />
         </div>
       </div>
       <div className="flex mt-3 p-4  gap-2 justify-around">
         <div>
-          <ImageUploader
-            imageBoxSize="h-50 w-[680px] rounded-3xl"
-            title="Logo"
+          <Controller
+            control={control}
+            name="logo"
+            render={({ field }) => (
+              <ImageUploader
+                value={field.value}
+                onchange={field.onChange}
+                imageBoxSize="h-50 w-[680px] rounded-3xl"
+                title="Logo"
+              />
+            )}
           />
         </div>
         <div>
-          <ImageUploader
-            imageBoxSize="h-50 w-[680px] rounded-3xl"
-            title="FavIcon"
+          <Controller
+            control={control}
+            name="favicon"
+            render={({ field }) => (
+              <ImageUploader
+                title="FavIcon"
+                imageBoxSize="h-50 w-[680px] rounded-3xl"
+                value={field.value}
+                onchange={field.onChange}
+              />
+            )}
           />
         </div>
       </div>
       <div className="px-20">
-        <TextBox
-          onPublish={(val) => console.log("Content:", val)}
-          maxLength={7000}
-          wrapperClass="rounded-3xl p-4 "
-          placeholder="Enter the meta description... "
-          textareaClass="p-2 h-40"
-          showButton={true}
-          buttonClass="px-7 bg-black p-2"
+        <Controller
+          name="metaDescription"
+          control={control}
+          render={({ field }) => (
+            <TextBox
+              maxLength={7000}
+              wrapperClass="rounded-3xl p-8 "
+              placeholder="Enter the meta description... "
+              textareaClass="p-2 h-40"
+              value={field.value}
+              onChange={field.onChange}
+            />
+          )}
         />
       </div>
-    </>
+      <div className="flex w-full justify-center">
+        <button
+          className=" mt-5 border border-gray-400 text-gray-700 py-2 px-5 rounded-2xl hover:bg-gray-700 hover:text-white"
+          type="submit"
+        >
+          Publish
+        </button>
+      </div>
+    </form>
   );
 };
 
