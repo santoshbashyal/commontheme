@@ -4,5 +4,6 @@ export const endpoints = {
   },
   settings: {
     getsettings: "/settings",
+    postsettings: "/settings/update",
   },
 };

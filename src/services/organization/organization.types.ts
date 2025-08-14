@@ -6,7 +6,8 @@ export interface Isettings {
 export interface Settings {
   site_title: string;
   logo: string;
-  fabcon: string;
+  favicon: string;
   social_facebook: string;
   social_youtube: string;
+  metaDescription: string;
 }

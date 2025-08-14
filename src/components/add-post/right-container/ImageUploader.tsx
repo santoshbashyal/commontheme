@@ -6,6 +6,32 @@ interface ImageUploaderProps {
   onchange?: (val: string | null) => void; //controlled change handler
 }
 
+function imageToBase64(file: File): Promise<string | undefined> {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      resolve(undefined);
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result === "string") {
+        resolve(result);
+      } else {
+        resolve(undefined);
+      }
+    };
+
+    reader.onerror = () => {
+      reject(undefined);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
 const ImageUploader = ({
   title,
   imageBoxSize,
@@ -15,12 +41,14 @@ const ImageUploader = ({
   // const [image, setImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0]; //get the file
     if (file) {
-      const imageURL = URL.createObjectURL(file); //make a preview url
+      const imageURL = await imageToBase64(file); //make a preview url
       // setImage(imageURL); //save image url into state
-      onchange?.(imageURL); //send new value to react-hook-form
+      if (imageURL) onchange?.(imageURL); //send new value to react-hook-form
     }
   };
   const handleClick = () => {

@@ -2,6 +2,9 @@ import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { InputTitle } from "../../components/add-new/InputTitle";
 import ImageUploader from "../../components/add-post/right-container/ImageUploader";
 import TextBox from "../../components/add-post/TextBox";
+import { useUpdateSettings } from "../../services/organization/organization";
+import { showErrorMessage, showSuccessMessage } from "../../lib/utils/toast";
+import { BiLoader } from "react-icons/bi";
 
 type FormValues = {
   name: string;
@@ -11,7 +14,7 @@ type FormValues = {
 };
 
 const Settings = () => {
-  const { register, handleSubmit, control } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {
       name: "",
       logo: "",
@@ -19,8 +22,16 @@ const Settings = () => {
       metaDescription: "",
     },
   });
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+  const { mutateAsync, isPending } = useUpdateSettings();
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      const res = await mutateAsync(data);
+      console.log(res);
+      showSuccessMessage("Settings updated Sucessfully");
+    } catch (err) {
+      console.log(err);
+      showErrorMessage("Settings failed to update");
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -87,10 +98,11 @@ const Settings = () => {
       </div>
       <div className="flex w-full justify-center">
         <button
-          className=" mt-5 border border-gray-400 text-gray-700 py-2 px-5 rounded-2xl hover:bg-gray-700 hover:text-white"
+          disabled={isPending}
+          className=" mt-5 border items-center flex gap-1 disabled:opacity-40 border-gray-400 text-gray-700 py-2 px-5 rounded-2xl hover:bg-gray-700 hover:text-white"
           type="submit"
         >
-          Publish
+          Publish {isPending && <BiLoader className="animate-spin" />}
         </button>
       </div>
     </form>
