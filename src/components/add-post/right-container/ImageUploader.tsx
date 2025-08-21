@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 interface ImageUploaderProps {
   title: string;
   imageBoxSize: string;
-  value?: string | null; //controlled value
-  onchange?: (val: string | null) => void; //controlled change handler
+  value?: File | string | null; //controlled value
+  onchange?: (val: File | string | null) => void; //controlled change handler
 }
 
 function imageToBase64(file: File): Promise<string | undefined> {
@@ -38,7 +38,7 @@ const ImageUploader = ({
   value,
   onchange,
 }: ImageUploaderProps) => {
-  // const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string | undefined>(undefined);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = async (
@@ -48,7 +48,8 @@ const ImageUploader = ({
     if (file) {
       const imageURL = await imageToBase64(file); //make a preview url
       // setImage(imageURL); //save image url into state
-      if (imageURL) onchange?.(imageURL); //send new value to react-hook-form
+      if (imageURL) setImage(imageURL);
+      onchange?.(file);
     }
   };
   const handleClick = () => {
@@ -71,7 +72,7 @@ const ImageUploader = ({
         {value ? (
           <img
             className="h-full w-full object-fill rounded-xl"
-            src={value}
+            src={image}
             alt=""
           />
         ) : (

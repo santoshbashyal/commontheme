@@ -12,7 +12,7 @@ export const getSocialLinks = async () => {
   return res?.data;
 };
 
-export const postSocialLinks = async (data: Partial<Settings>) => {
+export const postSocialLinks = async (data: FormData) => {
   const res = await HttpClient.post(endpoints.settings.postsettings, data);
   return res?.data;
 };

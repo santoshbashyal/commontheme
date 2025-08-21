@@ -8,13 +8,13 @@ import { BiLoader } from "react-icons/bi";
 
 type FormValues = {
   name: string;
-  logo: string;
-  favicon: string;
+  logo?: File | string;
+  favicon?: File | string;
   metaDescription: string;
 };
 
 const Settings = () => {
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
       name: "",
       logo: "",
@@ -24,8 +24,13 @@ const Settings = () => {
   });
   const { mutateAsync, isPending } = useUpdateSettings();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const formdata = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (value) formdata.append(key, value);
+    });
+
     try {
-      const res = await mutateAsync(data);
+      const res = await mutateAsync(formdata);
       console.log(res);
       showSuccessMessage("Settings updated Sucessfully");
     } catch (err) {
