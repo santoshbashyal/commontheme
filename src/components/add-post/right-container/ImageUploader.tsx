@@ -2,8 +2,8 @@ import { useRef, useState } from "react";
 interface ImageUploaderProps {
   title: string;
   imageBoxSize: string;
-  value?: File | string | null; //controlled value
-  onchange?: (val: File | string | null) => void; //controlled change handler
+  value?: File | string | null; //controlled value from parent
+  onchange?: (val: File | string | null) => void; //call back to parent
 }
 
 function imageToBase64(file: File): Promise<string | undefined> {
@@ -44,12 +44,12 @@ const ImageUploader = ({
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const file = event.target.files?.[0]; //get the file
+    const file = event.target.files?.[0]; //get the first file
     if (file) {
       const imageURL = await imageToBase64(file); //make a preview url
-      // setImage(imageURL); //save image url into state
-      if (imageURL) setImage(imageURL);
-      onchange?.(file);
+
+      if (imageURL) setImage(imageURL); //save preview in state
+      onchange?.(file); //notify parent component
     }
   };
   const handleClick = () => {

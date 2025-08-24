@@ -14,7 +14,7 @@ const ExpandableTab = ({
   hasDropdown,
   subItems,
   link,
-  icon = "settings.svg", // Default icon with fallback
+  icon = "/settings.svg", // Default icon with fallback
 }: ExpandableTabProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();

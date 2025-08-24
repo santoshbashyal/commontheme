@@ -19,9 +19,10 @@ const PostTitlesData = [
 const Dashboard = () => {
   return (
     <>
-      <div className="font-extrabold text-2xl  text-gray-700 p-6">
+      <div className="font-extrabold text-2xl cursor-pointer text-gray-700 p-6">
         Dashboard
       </div>
+
       <div className="grid grid-cols-2 gap-4 mx-auto p-10 border border-gray-200 ">
         {StatisticsData.map((info, index) => (
           <Statistics key={index} title={info.title} count={info.count} />
