@@ -2,6 +2,7 @@ import { NavLink } from "react-router";
 import ExpandableTab from "./ExpandableTab";
 import ImageName from "./ImageName";
 import { SideMenuData } from "./SideMenuData";
+import { SettingsSVG } from "../../assets";
 
 const SideMenu = () => {
   return (
@@ -22,7 +23,7 @@ const SideMenu = () => {
             }
           >
             <div>
-              <img src="/settings.svg" alt="" />
+              <img src={SettingsSVG} alt="" />
             </div>
             <div className="px-4">Dashboard</div>
           </NavLink>

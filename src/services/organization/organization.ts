@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { HttpClient } from "../../lib/axios";
 import { endpoints } from "../endpoints";
-import type { Isettings, Settings } from "./organization.types";
+import type { Isettings } from "./organization.types";
 
 const settingsKey = {
   get: "settings",
