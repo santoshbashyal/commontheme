@@ -29,4 +29,5 @@ export const ROUTES = {
   },
   settings: "/settings",
   subscribers: "/subscribers",
+  heroSection: "/herosection",
 };

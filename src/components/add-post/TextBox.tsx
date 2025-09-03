@@ -1,10 +1,11 @@
 interface TextBoxProps {
   value?: string;
-  onChange: (val: string) => void;
+  onChange?: (val: string) => void;
   maxLength?: number;
   placeholder?: string;
   wrapperClass?: string;
   textareaClass?: string;
+  error?: boolean;
 }
 
 const TextBox = ({
@@ -13,16 +14,17 @@ const TextBox = ({
   maxLength,
   wrapperClass = "",
   textareaClass = "",
+  error,
 
   placeholder = "",
 }: TextBoxProps) => {
   return (
-    <div className="">
+    <div className={`w-full h-full ${error ? "border border-red-500" : ""}`}>
       <div
-        className={`relative border border-gray-300  shadow-sm bg-white ${wrapperClass}`}
+        className={`relative   border border-gray-300  shadow-sm bg-white ${wrapperClass}`}
       >
         <textarea
-          className={`w-full resize-none rounded-2xl outline-none text-gray-700 ${textareaClass}`}
+          className={` resize-none rounded-2xl outline-none text-gray-700 ${textareaClass}`}
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange?.(e.target.value)}

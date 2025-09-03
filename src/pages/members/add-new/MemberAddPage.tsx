@@ -20,13 +20,11 @@ const MembersAddPage = () => {
           <MembersTitle />
           <div>
             <TextBox
-              onPublish={(val) => console.log("content:", val)}
+              onChange={(val) => console.log("content:", val)}
               maxLength={2000}
               wrapperClass="rounded-2xl p-4"
               placeholder=" Begin writing here ... "
               textareaClass="h-60"
-              showButton={true}
-              buttonClass="bg-gray-700 px-7 p-1"
             />
           </div>
           <div className="my-5">
@@ -84,7 +82,7 @@ const MembersAddPage = () => {
           </div>
           <div className="my-4">
             <TextBox
-              onPublish={(e) => console.log("Metatitle", e)}
+              onChange={(e) => console.log("Metatitle", e)}
               maxLength={200}
               placeholder="Enter the meta title.."
               wrapperClass="rounded-2xl"
@@ -93,7 +91,7 @@ const MembersAddPage = () => {
           </div>
           <div className="my-4">
             <TextBox
-              onPublish={(e) => console.log("MetaDescription", e)}
+              onChange={(e) => console.log("MetaDescription", e)}
               maxLength={200}
               placeholder="Enter the meta Description.."
               wrapperClass="rounded-2xl"

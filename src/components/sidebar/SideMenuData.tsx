@@ -1,5 +1,11 @@
 export const SideMenuData = [
   {
+    label: "HeroSection",
+    hasDropdown: false,
+    link: "/herosection",
+    subItems: [],
+  },
+  {
     label: "Posts",
     hasDropdown: true,
     subItems: [
