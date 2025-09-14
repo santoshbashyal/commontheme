@@ -1,6 +1,6 @@
-import { InputTitle } from "../../../components/add-new/InputTitle";
-import ImageUploader from "../../../components/add-post/right-container/ImageUploader";
-import TextBox from "../../../components/add-post/TextBox";
+import { InputTitle } from "@/components/add-new/InputTitle";
+import ImageUploader from "@/components/add-post/right-container/ImageUploader";
+import TextBox from "@/components/add-post/TextBox";
 
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 interface FormValues {

@@ -1,9 +1,9 @@
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
-import { InputTitle } from "../../components/add-new/InputTitle";
-import ImageUploader from "../../components/add-post/right-container/ImageUploader";
-import TextBox from "../../components/add-post/TextBox";
-import { useUpdateHeroSection } from "../../services/herosection/heroSection";
-import { showErrorMessage, showSuccessMessage } from "../../lib/utils/toast";
+import { InputTitle } from "@/components/add-new/InputTitle";
+import ImageUploader from "@/components/add-post/right-container/ImageUploader";
+import TextBox from "@/components/add-post/TextBox";
+import { useUpdateHeroSection } from "@/services/herosection/heroSection";
+import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { BiLoader } from "react-icons/bi";
 type FormValues = {
   title: string;

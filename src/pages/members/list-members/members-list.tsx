@@ -1,4 +1,4 @@
-import ListPage from "../../../components/list/ListPage";
+import ListPage from "@/components/list/ListPage";
 import { MemberListColumn, MemberListData } from "./memberListData";
 
 const MembersListPage = () => {

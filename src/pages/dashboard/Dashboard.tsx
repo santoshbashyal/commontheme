@@ -1,5 +1,5 @@
-import { PostTitles } from "../../components/dashboard/postTitle";
-import Statistics from "../../components/dashboard/Statistics";
+import { PostTitles } from "@/components/dashboard/postTitle";
+import Statistics from "@/components/dashboard/Statistics";
 
 const StatisticsData = [
   { title: "No. of Posts", count: 12 },

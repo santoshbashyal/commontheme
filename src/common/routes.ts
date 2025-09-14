@@ -28,8 +28,8 @@ export const ROUTES = {
     add: "/members/add",
   },
   policy: {
-    privacy: "privacy-policy",
-    cookie: "cookie-policy",
+    privacy: "/privacy-policy",
+    cookie: "/cookie-policy",
   },
   settings: "/settings",
   subscribers: "/subscribers",

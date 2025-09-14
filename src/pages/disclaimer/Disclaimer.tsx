@@ -1,10 +1,10 @@
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { BiLoader } from "react-icons/bi";
-import { useUpdateDisclaimer } from "../../services/disclaimer/disclaimer";
-import { InputTitle } from "../../components/add-new/InputTitle";
+import { useUpdateDisclaimer } from "@/services/disclaimer/disclaimer";
+import { InputTitle } from "@/components/add-new/InputTitle";
 
-import TextBox from "../../components/add-post/TextBox";
-import { showErrorMessage, showSuccessMessage } from "../../lib/utils/toast";
+import TextBox from "@/components/add-post/TextBox";
+import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 
 type FormValues = {
   title: string;
