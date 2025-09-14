@@ -15,8 +15,8 @@ export const InputTitle = ({
 }: InputTitleProps) => {
   return (
     <div
-      className={`px-4 p-3 border border-gray-400 rounded-3xl mb-4 ${
-        error ? "border-red-500" : "border-gray-800"
+      className={`px-4 p-3 border rounded-3xl mb-4 ${
+        error ? "border-red-500" : "border-gray-400"
       }`}
     >
       <div>

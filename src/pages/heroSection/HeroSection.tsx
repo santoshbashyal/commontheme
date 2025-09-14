@@ -31,7 +31,7 @@ const HeroSection = () => {
       if (value) formdata.append(key, value);
     });
     try {
-      const res = await mutateAsync(formdata);
+      await mutateAsync(formdata);
       showSuccessMessage("updated successfully");
     } catch (err) {
       showErrorMessage("update failed");
