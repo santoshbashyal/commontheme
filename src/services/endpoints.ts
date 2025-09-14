@@ -6,4 +6,8 @@ export const endpoints = {
     getsettings: "/settings",
     postsettings: "/settings/update",
   },
+  heroSection: {
+    getHeroSection: "/hero-section/1",
+    postHeroSection: "/hero-section",
+  },
 };

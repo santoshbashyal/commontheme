@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 interface ImageUploaderProps {
   title: string;
+  error?: boolean;
   imageBoxSize: string;
   value?: File | string | null; //controlled value from parent
   onchange?: (val: File | string | null) => void; //call back to parent
@@ -37,6 +38,7 @@ const ImageUploader = ({
   imageBoxSize,
   value,
   onchange,
+  error,
 }: ImageUploaderProps) => {
   const [image, setImage] = useState<string | undefined>(undefined);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -65,19 +67,21 @@ const ImageUploader = ({
       </div>
 
       {/* image box */}
-      <div
-        onClick={handleClick}
-        className={` bg-gray-100 cursor-pointer flex items-center justify-center mb-4 ${imageBoxSize}`}
-      >
-        {value ? (
-          <img
-            className="h-full w-full object-fill rounded-xl"
-            src={image}
-            alt=""
-          />
-        ) : (
-          <img src="/image-up.svg" alt="" />
-        )}
+      <div className={`${error ? "border border-red-500" : ""}`}>
+        <div
+          onClick={handleClick}
+          className={` bg-gray-100 cursor-pointer flex items-center justify-center mb-4 ${imageBoxSize}`}
+        >
+          {value ? (
+            <img
+              className="h-full w-full object-fill rounded-xl"
+              src={image}
+              alt=""
+            />
+          ) : (
+            <img src="/image-up.svg" alt="" />
+          )}
+        </div>
       </div>
 
       {/* hidden-inupt file  */}
