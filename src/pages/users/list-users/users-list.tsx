@@ -1,5 +1,5 @@
 import { userListColumns, userListData } from "./userListData";
-import ListPage from "../../../components/list/ListPage";
+import ListPage from "@/components/list/ListPage";
 
 const UserListPage = () => {
   return (

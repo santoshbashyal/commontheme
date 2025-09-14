@@ -1,4 +1,4 @@
-import type { SimpleColumn } from "../../components/list/ListTableHeader";
+import type { SimpleColumn } from "@/components/list/ListTableHeader";
 
 export const SubscribersListColumn: SimpleColumn[] = [
   { label: "Email", accessor: "email" },

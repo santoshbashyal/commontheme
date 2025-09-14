@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { InputTitle } from "../../../components/add-new/InputTitle";
-import PermissionGroup from "../../../components/role-permission/PermissionGroup";
+import { InputTitle } from "@/components/add-new/InputTitle";
+import PermissionGroup from "@/components/role-permission/PermissionGroup";
 
 export const RolesAddPage = () => {
   const [data, setData] = useState("");

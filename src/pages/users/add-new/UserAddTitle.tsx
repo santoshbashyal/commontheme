@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputTitle } from "../../../components/add-new/InputTitle";
+import { InputTitle } from "@/components/add-new/InputTitle";
 
 export const UserAddTitle = () => {
   const [usertitle, setUserTitle] = useState("");

@@ -27,7 +27,12 @@ export const ROUTES = {
     list: "/members",
     add: "/members/add",
   },
+  policy: {
+    privacy: "/privacy-policy",
+    cookie: "/cookie-policy",
+  },
   settings: "/settings",
   subscribers: "/subscribers",
   heroSection: "/herosection",
+  disclaimer: "/disclaimer",
 };

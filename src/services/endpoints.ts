@@ -10,4 +10,8 @@ export const endpoints = {
     getHeroSection: "/hero-section/1",
     postHeroSection: "/hero-section",
   },
+  disclaimer: {
+    getDisclaimer: "/disclaimer",
+    postDisclaimer: "/disclaimer",
+  },
 };
