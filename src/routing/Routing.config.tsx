@@ -18,6 +18,7 @@ import MembersAddPage from "../pages/members/add-new/MemberAddPage";
 import { RolesAddPage } from "../pages/roles/add-roles/RolesAddPage";
 import LoginPage from "../pages/Auth/login/Login";
 import HeroSection from "../pages/heroSection/HeroSection";
+import Disclaimer from "../pages/disclaimer/Disclaimer";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: ROUTES.heroSection,
         element: <HeroSection />,
+      },
+      {
+        path: ROUTES.disclaimer,
+        element: <Disclaimer />,
       },
     ],
   },

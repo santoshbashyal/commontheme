@@ -52,6 +52,12 @@ export const SideMenuData = [
     ],
   },
   {
+    label: "Disclaimer",
+    link: "/disclaimer",
+    hasDropDown: false,
+    subItems: [],
+  },
+  {
     label: "Roles",
     hasDropdown: true,
     subItems: [

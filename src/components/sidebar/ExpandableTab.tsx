@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router";
 interface ExpandableTabProps {
   label: string;
   link?: string;
-  hasDropdown: boolean;
+  hasDropdown?: boolean;
   subItems: { name: string; path: string }[];
   icon?: string; // Made icon optional and configurable
 }

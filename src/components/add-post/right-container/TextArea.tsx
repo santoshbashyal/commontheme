@@ -1,4 +1,3 @@
-import { Controller } from "react-hook-form";
 import TextBox from "../TextBox";
 
 const placeholder = [
