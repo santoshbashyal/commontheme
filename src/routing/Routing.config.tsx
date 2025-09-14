@@ -1,24 +1,26 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { HomeLayoutPage } from "../components/layout/HomeLayoutPage";
-import HomePage from "../pages/home/home-page";
-import { ROUTES } from "../common/routes";
-import AddPost from "../pages/post/post-add/add-post";
-import { CategoryListPage } from "../pages/category/category-list/categry-list";
-import { CategoryAddPage } from "../pages/category/add-category/CategoryAddPage";
-import { UsersAddPage } from "../pages/users/add-new/UsersAddPage";
-import { PagesAdd } from "../pages/pages-/add-pages/PagesAdd";
-import PostListPage from "../pages/post/post-list/PostListPage";
-import UserListPage from "../pages/users/list-users/users-list";
-import PageListPage from "../pages/pages-/list-pages/pages-list";
-import RolesListPage from "../pages/roles/roles-list/roles-list";
-import SubscribersListPage from "../pages/subscribers/subscriber-list";
-import MembersListPage from "../pages/members/list-members/members-list";
-import Settings from "../pages/settings/Settings";
-import MembersAddPage from "../pages/members/add-new/MemberAddPage";
-import { RolesAddPage } from "../pages/roles/add-roles/RolesAddPage";
-import LoginPage from "../pages/Auth/login/Login";
-import HeroSection from "../pages/heroSection/HeroSection";
-import Disclaimer from "../pages/disclaimer/Disclaimer";
+import { HomeLayoutPage } from "@/components/layout/HomeLayoutPage";
+import HomePage from "@/pages/home/home-page";
+import { ROUTES } from "@/common/routes";
+import AddPost from "@/pages/post/post-add/add-post";
+import { CategoryListPage } from "@/pages/category/category-list/categry-list";
+import { CategoryAddPage } from "@/pages/category/add-category/CategoryAddPage";
+import { UsersAddPage } from "@/pages/users/add-new/UsersAddPage";
+import { PagesAdd } from "@/pages/pages-/add-pages/PagesAdd";
+import PostListPage from "@/pages/post/post-list/PostListPage";
+import UserListPage from "@/pages/users/list-users/users-list";
+import PageListPage from "@/pages/pages-/list-pages/pages-list";
+import RolesListPage from "@/pages/roles/roles-list/roles-list";
+import SubscribersListPage from "@/pages/subscribers/subscriber-list";
+import MembersListPage from "@/pages/members/list-members/members-list";
+import Settings from "@/pages/settings/Settings";
+import MembersAddPage from "@/pages/members/add-new/MemberAddPage";
+import { RolesAddPage } from "@/pages/roles/add-roles/RolesAddPage";
+import LoginPage from "@/pages/Auth/login/Login";
+import HeroSection from "@/pages/heroSection/HeroSection";
+import Disclaimer from "@/pages/disclaimer/Disclaimer";
+import PrivacyPolicy from "@/pages/privacy-policy/PrivacyPolicy";
+import CookiePolicy from "@/pages/cookie-policy/CookiePolicy";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +97,14 @@ const router = createBrowserRouter([
       {
         path: ROUTES.disclaimer,
         element: <Disclaimer />,
+      },
+      {
+        path: ROUTES.policy.privacy,
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: ROUTES.policy.cookie,
+        element: <CookiePolicy />,
       },
     ],
   },
