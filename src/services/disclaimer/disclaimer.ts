@@ -32,8 +32,7 @@ export const useUpdateDisclaimer = () => {
   return useMutation({
     mutationFn: postDisclaimer,
     onSuccess: () => {
-      queryClient.invalidateQueries;
-      ({ queryKey: [disclaimerKey.get] });
+      queryClient.invalidateQueries({ queryKey: [disclaimerKey.get] });
     },
   });
 };

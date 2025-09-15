@@ -14,4 +14,8 @@ export const endpoints = {
     getDisclaimer: "/disclaimer",
     postDisclaimer: "/disclaimer",
   },
+  privacy: {
+    getPrivacyPolicy: "/privacy-policy",
+    postPrivacyPolicy: "/privacy-policy",
+  },
 };
