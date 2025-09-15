@@ -32,7 +32,7 @@ const PrivacyPolicy = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="p-4 px-10">
+        <div className="p-4 px-10"> 
           <Controller
             control={control}
             name="title"
