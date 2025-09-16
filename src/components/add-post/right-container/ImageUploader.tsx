@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 interface ImageUploaderProps {
   title: string;
-  error?: boolean;
+  error?: string;
   imageBoxSize: string;
-  value?: File | string | null; //controlled value from parent
+  value?: File | string | null | undefined; //controlled value from parent
   onchange?: (val: File | string | null) => void; //call back to parent
 }
 
@@ -101,6 +101,11 @@ const ImageUploader = ({
         >
           Replace Image
         </div>
+      )}
+      {error && (
+        <p className="text-red-600 flex justify-center italic text-sm">
+          {error}
+        </p>
       )}
     </>
   );

@@ -3,18 +3,16 @@ import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import TextBox from "@/components/add-post/TextBox";
 import ImageUploader from "@/components/add-post/right-container/ImageUploader";
 import { InputTitle } from "@/components/add-new/InputTitle";
-interface FormValues {
-  post_title: string;
-  image: File | string;
-  alt_text: string;
-  description: string;
-  meta_title: string;
-  meta_description: string;
-  url_friendlyTitle: string;
-}
+import { CategorySchema, type CategoryFormValues } from "../schema/category";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const CategoryAddPage = () => {
-  const { handleSubmit, control } = useForm<FormValues>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<CategoryFormValues>({
+    resolver: zodResolver(CategorySchema),
     defaultValues: {
       post_title: "",
       image: "",
@@ -25,12 +23,12 @@ export const CategoryAddPage = () => {
       url_friendlyTitle: "",
     },
   });
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<CategoryFormValues> = (data) => {
     console.log(data);
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit, (e) => console.log(e))}>
         <div className="flex  gap-4 p-4 ">
           <div className="w-full ">
             <Controller
@@ -38,6 +36,7 @@ export const CategoryAddPage = () => {
               name="post_title"
               render={({ field }) => (
                 <InputTitle
+                  error={errors.post_title?.message}
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Category Title"
@@ -51,6 +50,7 @@ export const CategoryAddPage = () => {
                 name="description"
                 render={({ field }) => (
                   <TextBox
+                    error={errors.description?.message}
                     value={field.value}
                     onChange={field.onChange}
                     maxLength={8000}
@@ -69,6 +69,7 @@ export const CategoryAddPage = () => {
               name="image"
               render={({ field }) => (
                 <ImageUploader
+                  error={errors.image?.message}
                   value={field.value}
                   onchange={field.onChange}
                   imageBoxSize="h-[160px] rounded-2xl"
@@ -82,6 +83,7 @@ export const CategoryAddPage = () => {
                 name="alt_text"
                 render={({ field }) => (
                   <InputTitle
+                    error={errors.alt_text?.message}
                     value={field.value}
                     onChange={field.onChange}
                     placeholder="alt image text"
@@ -95,6 +97,7 @@ export const CategoryAddPage = () => {
                 name="meta_title"
                 render={({ field }) => (
                   <TextBox
+                    error={errors.meta_title?.message}
                     value={field.value}
                     onChange={field.onChange}
                     placeholder="Enter the meta title ..."
@@ -111,6 +114,7 @@ export const CategoryAddPage = () => {
                 name="meta_description"
                 render={({ field }) => (
                   <TextBox
+                    error={errors.meta_description?.message}
                     value={field.value}
                     onChange={field.onChange}
                     placeholder="Enter the meta description ..."
@@ -127,6 +131,7 @@ export const CategoryAddPage = () => {
                 name="url_friendlyTitle"
                 render={({ field }) => (
                   <InputTitle
+                    error={errors.url_friendlyTitle?.message}
                     value={field.value}
                     onChange={field.onChange}
                     placeholder="URL Friendly Title"
