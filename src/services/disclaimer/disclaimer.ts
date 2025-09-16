@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { HttpClient } from "../../lib/axios";
 import { endpoints } from "../endpoints";
-import type { IDisclaimer } from "./disclaimer.types";
+import type { IDisclaimer } from "../../types/disclaimer.types";
 
 const disclaimerKey = {
   get: "disclaimer",

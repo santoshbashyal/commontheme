@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { HttpClient } from "../../lib/axios";
+import { HttpClient } from "@/lib/axios";
 import { endpoints } from "../endpoints";
 
 const heroKey = {

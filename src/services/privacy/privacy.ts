@@ -1,7 +1,7 @@
 import { HttpClient } from "@/lib/axios";
-import type { IPrivacy } from "./privacy.types";
 import { endpoints } from "../endpoints";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { IPrivacy } from "@/types/privacy.types";
 
 const privacyKey = {
   get: "privacy-policy",

@@ -1,6 +1,6 @@
 import { HttpClient } from "@/lib/axios";
 import { endpoints } from "../endpoints";
-import type { ICookie } from "./cookie.types";
+import type { ICookie } from "../../types/cookie.types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const cookieKey = {
