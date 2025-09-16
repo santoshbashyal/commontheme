@@ -5,17 +5,16 @@ import TextBox from "@/components/add-post/TextBox";
 import { useUpdateSettings } from "@/services/organization/organization";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { BiLoader } from "react-icons/bi";
-
-type FormValues = {
-  name: string;
-  logo?: File | string;
-  favicon?: File | string;
-  metaDescription: string;
-};
-// change
+import { SettingSchema, type FormValues } from "./schema/settings";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const Settings = () => {
-  const { handleSubmit, control } = useForm<FormValues>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(SettingSchema),
     defaultValues: {
       name: "",
       logo: "",
@@ -48,6 +47,7 @@ const Settings = () => {
             name="name"
             render={({ field }) => (
               <InputTitle
+                error={errors.name?.message}
                 value={field.value}
                 onChange={field.onChange}
                 placeholder="Settings Title"
@@ -63,6 +63,7 @@ const Settings = () => {
             name="logo"
             render={({ field }) => (
               <ImageUploader
+                error={errors.logo?.message}
                 value={field.value}
                 onchange={field.onChange}
                 imageBoxSize="h-50 w-[680px] rounded-3xl"
@@ -77,6 +78,7 @@ const Settings = () => {
             name="favicon"
             render={({ field }) => (
               <ImageUploader
+                error={errors.favicon?.message}
                 title="FavIcon"
                 imageBoxSize="h-50 w-[680px] rounded-3xl"
                 value={field.value}
@@ -92,6 +94,7 @@ const Settings = () => {
           control={control}
           render={({ field }) => (
             <TextBox
+              error={errors.metaDescription?.message}
               maxLength={7000}
               wrapperClass="rounded-3xl p-8 "
               placeholder="Enter the meta description... "
