@@ -5,18 +5,16 @@ import TextBox from "@/components/add-post/TextBox";
 import { useUpdateHeroSection } from "@/services/herosection/heroSection";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { BiLoader } from "react-icons/bi";
-type FormValues = {
-  title: string;
-  alt_text: string;
-  image: File | string;
-  description: string;
-};
+import { HeroSchema, type FormValues } from "./schema/hero";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 const HeroSection = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<FormValues>({
+    resolver: zodResolver(HeroSchema),
     defaultValues: {
       title: "",
       image: "",
@@ -62,7 +60,6 @@ const HeroSection = () => {
           <div className=" px-20  ">
             <div className="">
               <Controller
-                rules={{ required: "Please upload an image here" }}
                 control={control}
                 name="image"
                 render={({ field }) => (
@@ -71,13 +68,10 @@ const HeroSection = () => {
                     onchange={field.onChange}
                     title="HeroSection Image"
                     imageBoxSize="h-50 w-80"
-                    error={!!errors.image}
+                    error={errors.image?.message}
                   />
                 )}
               />
-              {errors.image && (
-                <p className="text-red-600 italic">{errors.image.message}</p>
-              )}
             </div>
             <div className=" flex mx-4 items-center">
               <Controller
@@ -85,6 +79,7 @@ const HeroSection = () => {
                 name="alt_text"
                 render={({ field }) => (
                   <InputTitle
+                    error={errors.alt_text?.message}
                     value={field.value}
                     onChange={field.onChange}
                     placeholder="Image alt text"
@@ -105,7 +100,7 @@ const HeroSection = () => {
                   wrapperClass="h-full w-[90%] p-2 rounded-2xl "
                   textareaClass="h-full p-2 "
                   maxLength={800}
-                  error=""
+                  error={errors.description?.message}
                 />
               )}
             />
