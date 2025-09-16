@@ -2,23 +2,25 @@ import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { BiLoader } from "react-icons/bi";
 import { useUpdateDisclaimer } from "@/services/disclaimer/disclaimer";
 import { InputTitle } from "@/components/add-new/InputTitle";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 import TextBox from "@/components/add-post/TextBox";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
+import { PolicySchema, type PolicyFormValues } from "@/schemas/policy";
 
-type FormValues = {
-  title: string;
-  content: string;
-};
 const Disclaimer = () => {
-  const { handleSubmit, control } = useForm<FormValues>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<PolicyFormValues>({
+    resolver: zodResolver(PolicySchema),
     defaultValues: {
       title: "",
       content: "",
     },
   });
   const { mutateAsync, isPending } = useUpdateDisclaimer();
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<PolicyFormValues> = async (data) => {
     const formdata = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (value) formdata.append(key, value);
@@ -38,11 +40,14 @@ const Disclaimer = () => {
             name="title"
             control={control}
             render={({ field }) => (
-              <InputTitle
-                value={field.value}
-                onChange={field.onChange}
-                placeholder="Enter title here .."
-              />
+              <div>
+                <InputTitle
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={errors.title?.message}
+                  placeholder="Enter Disclaimer title here .."
+                />
+              </div>
             )}
           />
         </div>
@@ -51,14 +56,17 @@ const Disclaimer = () => {
             control={control}
             name="content"
             render={({ field }) => (
-              <TextBox
-                placeholder="Enter description here ... "
-                value={field.value}
-                onChange={field.onChange}
-                maxLength={800}
-                wrapperClass="h-full rounded-2xl"
-                textareaClass="h-[500px] p-2"
-              />
+              <div>
+                <TextBox
+                  placeholder="Enter description here ... "
+                  value={field.value}
+                  onChange={field.onChange}
+                  maxLength={800}
+                  wrapperClass="h-full rounded-2xl"
+                  textareaClass="h-[500px] p-2"
+                  error={errors.content?.message}
+                />
+              </div>
             )}
           />
         </div>
