@@ -44,7 +44,6 @@ const HeroSection = () => {
         <div className="mt-6 w-full  px-4 ">
           <div className=" w-[90%] ">
             <Controller
-              rules={{ required: "Title is required" }}
               control={control}
               name="title"
               render={({ field }) => (
@@ -53,13 +52,10 @@ const HeroSection = () => {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Hero section title"
-                  error={!!errors.title}
+                  error={errors.title?.message}
                 />
               )}
             />
-            {errors.title && (
-              <p className="text-red-600 italic">{errors.title.message}</p>
-            )}
           </div>
         </div>
         <div className="flex grow gap-4 w-full mt-10">
@@ -99,7 +95,6 @@ const HeroSection = () => {
           </div>
           <div className=" grow">
             <Controller
-              rules={{ required: "Description is required" }}
               control={control}
               name="description"
               render={({ field }) => (
@@ -108,20 +103,15 @@ const HeroSection = () => {
                   onChange={field.onChange}
                   placeholder="Description here .."
                   wrapperClass="h-full w-[90%] p-2 rounded-2xl "
-                  textareaClass="h-full "
+                  textareaClass="h-full p-2 "
                   maxLength={800}
-                  error={!!errors.description}
+                  error=""
                 />
               )}
             />
-            {errors.description && (
-              <p className="text-red-600 italic">
-                {errors.description.message}
-              </p>
-            )}
           </div>
         </div>
-        <div className="flex w-full justify-center">
+        <div className="flex w-full mt-10 justify-center">
           <button
             disabled={isPending}
             className=" mt-5 border items-center flex gap-1 disabled:opacity-40 border-gray-400 text-gray-700 py-2 px-5 rounded-2xl hover:bg-gray-700 hover:text-white"
