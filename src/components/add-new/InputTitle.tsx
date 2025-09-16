@@ -1,5 +1,5 @@
 interface InputTitleProps {
-  value: string;
+  value: string | undefined;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
