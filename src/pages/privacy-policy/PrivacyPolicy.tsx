@@ -1,23 +1,26 @@
 import { InputTitle } from "@/components/add-new/InputTitle";
 import TextBox from "@/components/add-post/TextBox";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
+import { PolicySchema, type PolicyFormValues } from "@/schemas/policy";
 import { useUpdatePrivacyPolicy } from "@/services/privacy/privacy";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { BiLoader } from "react-icons/bi";
 
-type FormValues = {
-  title: string;
-  content: string;
-};
 const PrivacyPolicy = () => {
-  const { handleSubmit, control } = useForm<FormValues>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<PolicyFormValues>({
+    resolver: zodResolver(PolicySchema),
     defaultValues: {
       title: "",
       content: "",
     },
   });
   const { mutateAsync, isPending } = useUpdatePrivacyPolicy();
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<PolicyFormValues> = async (data) => {
     const formdata = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (value) formdata.append(key, value);
@@ -32,7 +35,7 @@ const PrivacyPolicy = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="p-4 px-10"> 
+        <div className="p-4 px-10">
           <Controller
             control={control}
             name="title"
@@ -41,6 +44,7 @@ const PrivacyPolicy = () => {
                 placeholder="Privacy Policy title here ..."
                 onChange={field.onChange}
                 value={field.value}
+                error={errors.title?.message}
               />
             )}
           />
@@ -56,6 +60,7 @@ const PrivacyPolicy = () => {
                   placeholder="Privacy-Policy content here ..."
                   textareaClass="p-3 h-[600px]"
                   wrapperClass="rounded-2xl"
+                  error={errors.content?.message}
                 />
               )}
             />
