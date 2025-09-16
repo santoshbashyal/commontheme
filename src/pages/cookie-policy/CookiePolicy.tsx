@@ -1,23 +1,26 @@
 import { InputTitle } from "@/components/add-new/InputTitle";
 import TextBox from "@/components/add-post/TextBox";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
+import { PolicySchema, type PolicyFormValues } from "@/schemas/policy";
 import { useUpdateCookiePolicy } from "@/services/cookie/cookie";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { BiLoader } from "react-icons/bi";
 
-type formValues = {
-  title: string;
-  content: string;
-};
 const CookiePolicy = () => {
-  const { handleSubmit, control } = useForm<formValues>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<PolicyFormValues>({
+    resolver: zodResolver(PolicySchema),
     defaultValues: {
       title: "",
       content: "",
     },
   });
   const { mutateAsync, isPending } = useUpdateCookiePolicy();
-  const onSubmit: SubmitHandler<formValues> = async (data) => {
+  const onSubmit: SubmitHandler<PolicyFormValues> = async (data) => {
     const formdata = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (value) formdata.append(key, value);
@@ -41,6 +44,7 @@ const CookiePolicy = () => {
                 value={field.value}
                 onChange={field.onChange}
                 placeholder="Cookie policy title ..."
+                error={errors.title?.message}
               />
             )}
           />
@@ -56,6 +60,7 @@ const CookiePolicy = () => {
                   textareaClass="p-3 h-[600px]"
                   wrapperClass="rounded-2xl  "
                   maxLength={8000}
+                  error={errors.content?.message}
                 />
               )}
             />
