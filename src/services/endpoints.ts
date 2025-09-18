@@ -24,5 +24,6 @@ export const endpoints = {
   },
   contacts: {
     getAllContacts: "/contacts",
+    getContactsByID: "/contacts/:id",
   },
 };

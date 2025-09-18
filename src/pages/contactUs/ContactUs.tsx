@@ -1,5 +1,7 @@
+import { ROUTES } from "@/common/routes";
 import { useContacts } from "@/services/contacts/contactUs";
 import { ImEye } from "react-icons/im";
+import { Link } from "react-router";
 
 const ContactUs = () => {
   const { data, isLoading, isError } = useContacts();
@@ -34,7 +36,14 @@ const ContactUs = () => {
                 <td>{info.email}</td>
                 <td>{new Date(info.created_at).toLocaleDateString()}</td>
                 <td className="px-5 cursor-pointer text-gray-600  hover:text-green-500">
-                  <ImEye />
+                  <Link
+                    to={ROUTES.contactUs.details.replace(
+                      ":id",
+                      info.id.toString()
+                    )}
+                  >
+                    <ImEye />
+                  </Link>
                 </td>
               </tr>
             ))}

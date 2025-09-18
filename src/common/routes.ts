@@ -31,7 +31,10 @@ export const ROUTES = {
     privacy: "/privacy-policy",
     cookie: "/cookie-policy",
   },
-  contactUs: "/contacts",
+  contactUs: {
+    list: "/contacts",
+    details: "/contacts/:id",
+  },
   settings: "/settings",
   subscribers: "/subscribers",
   heroSection: "/herosection",
