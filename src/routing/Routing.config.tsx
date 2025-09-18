@@ -21,6 +21,8 @@ import HeroSection from "@/pages/heroSection/HeroSection";
 import Disclaimer from "@/pages/disclaimer/Disclaimer";
 import PrivacyPolicy from "@/pages/privacy-policy/PrivacyPolicy";
 import CookiePolicy from "@/pages/cookie-policy/CookiePolicy";
+import ContactUs from "@/pages/contactUs/ContactUs";
+import ContactsDetail from "@/pages/contactUs/ContactsDetail";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +107,14 @@ const router = createBrowserRouter([
       {
         path: ROUTES.policy.cookie,
         element: <CookiePolicy />,
+      },
+      {
+        path: ROUTES.contactUs.list,
+        element: <ContactUs />,
+      },
+      {
+        path: ROUTES.contactUs.details,
+        element: <ContactsDetail />,
       },
     ],
   },
