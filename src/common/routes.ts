@@ -31,6 +31,7 @@ export const ROUTES = {
     privacy: "/privacy-policy",
     cookie: "/cookie-policy",
   },
+  contactUs: "/contacts",
   settings: "/settings",
   subscribers: "/subscribers",
   heroSection: "/herosection",

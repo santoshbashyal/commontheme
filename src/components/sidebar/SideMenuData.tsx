@@ -74,6 +74,12 @@ export const SideMenuData = [
     ],
   },
   {
+    label: "Contact-Us ",
+    link: "/contacts",
+    hasDropdown: false,
+    subItems: [],
+  },
+  {
     label: "Subscribers ",
     link: "/subscribers",
     hasDropdown: false,

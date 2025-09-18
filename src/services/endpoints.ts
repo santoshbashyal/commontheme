@@ -22,4 +22,7 @@ export const endpoints = {
     getCookiePolicy: "/cookie-policy",
     postCookiePolicy: "/cookie-policy",
   },
+  contacts: {
+    getAllContacts: "/contacts",
+  },
 };
