@@ -98,7 +98,7 @@ const HeroSection = () => {
                   onChange={field.onChange}
                   placeholder="Description here .."
                   wrapperClass="h-full w-[90%] p-2 rounded-2xl "
-                  textareaClass="h-full p-2 "
+                  textareaClass="h-full p-2 w-full "
                   maxLength={800}
                   error={errors.description?.message}
                 />
