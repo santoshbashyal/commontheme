@@ -1,17 +1,23 @@
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { BiLoader } from "react-icons/bi";
-import { useUpdateDisclaimer } from "@/services/disclaimer/disclaimer";
+import {
+  useDisclaimer,
+  useUpdateDisclaimer,
+} from "@/services/disclaimer/disclaimer";
 import { InputTitle } from "@/components/add-new/InputTitle";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TextBox from "@/components/add-post/TextBox";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { PolicySchema, type PolicyFormValues } from "@/schemas/policy";
+import { useEffect } from "react";
 
 const Disclaimer = () => {
+  const { data: disclaimerData } = useDisclaimer();
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<PolicyFormValues>({
     resolver: zodResolver(PolicySchema),
     defaultValues: {
@@ -19,6 +25,14 @@ const Disclaimer = () => {
       content: "",
     },
   });
+  useEffect(() => {
+    if (disclaimerData) {
+      reset({
+        title: disclaimerData.data.title,
+        content: disclaimerData.data.content,
+      });
+    }
+  }, [disclaimerData]);
   const { mutateAsync, isPending } = useUpdateDisclaimer();
   const onSubmit: SubmitHandler<PolicyFormValues> = async (data) => {
     const formdata = new FormData();
