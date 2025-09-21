@@ -2,17 +2,24 @@ import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { InputTitle } from "@/components/add-new/InputTitle";
 import ImageUploader from "@/components/add-post/right-container/ImageUploader";
 import TextBox from "@/components/add-post/TextBox";
-import { useUpdateHeroSection } from "@/services/herosection/heroSection";
+import {
+  useHeroSection,
+  useUpdateHeroSection,
+} from "@/services/herosection/heroSection";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { BiLoader } from "react-icons/bi";
 import { HeroSchema, type FormValues } from "./schema/hero";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 
 const HeroSection = () => {
+  const { data: heroData } = useHeroSection();
+  console.log("data is", heroData);
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<FormValues>({
     resolver: zodResolver(HeroSchema),
     defaultValues: {
@@ -22,6 +29,18 @@ const HeroSection = () => {
       description: "",
     },
   });
+
+  useEffect(() => {
+    if (heroData) {
+      reset({
+        title: heroData.data.title,
+        image: heroData.data.image,
+        alt_text: heroData.data.alt_text,
+        description: heroData.data.description,
+      });
+    }
+  }, [heroData]);
+
   const { mutateAsync, isPending } = useUpdateHeroSection();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const formdata = new FormData();
