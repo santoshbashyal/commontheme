@@ -2,26 +2,43 @@ import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { InputTitle } from "@/components/add-new/InputTitle";
 import ImageUploader from "@/components/add-post/right-container/ImageUploader";
 import TextBox from "@/components/add-post/TextBox";
-import { useUpdateSettings } from "@/services/organization/organization";
+import {
+  useSettings,
+  useUpdateSettings,
+} from "@/services/organization/organization";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { BiLoader } from "react-icons/bi";
 import { SettingSchema, type FormValues } from "./schema/settings";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 
 const Settings = () => {
+  const { data: settingsData } = useSettings();
+  console.log(settingsData);
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<FormValues>({
     resolver: zodResolver(SettingSchema),
     defaultValues: {
-      name: "",
+      site_title: "",
       logo: "",
       favicon: "",
       metaDescription: "",
     },
   });
+  useEffect(() => {
+    if (settingsData) {
+      reset({
+        site_title: settingsData.settings.site_title,
+        logo: settingsData.settings.logo,
+        favicon: settingsData.settings.favicon,
+        metaDescription: settingsData.settings.metaDescription,
+      });
+    }
+  }, [settingsData]);
   const { mutateAsync, isPending } = useUpdateSettings();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const formdata = new FormData();
@@ -44,10 +61,10 @@ const Settings = () => {
         <div className="w-[90%] mx-auto ">
           <Controller
             control={control}
-            name="name"
+            name="site_title"
             render={({ field }) => (
               <InputTitle
-                error={errors.name?.message}
+                error={errors.site_title?.message}
                 value={field.value}
                 onChange={field.onChange}
                 placeholder="Settings Title"

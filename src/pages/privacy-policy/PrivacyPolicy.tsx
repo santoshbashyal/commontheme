@@ -2,16 +2,22 @@ import { InputTitle } from "@/components/add-new/InputTitle";
 import TextBox from "@/components/add-post/TextBox";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { PolicySchema, type PolicyFormValues } from "@/schemas/policy";
-import { useUpdatePrivacyPolicy } from "@/services/privacy/privacy";
+import {
+  usePrivacyPolicy,
+  useUpdatePrivacyPolicy,
+} from "@/services/privacy/privacy";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { BiLoader } from "react-icons/bi";
 
 const PrivacyPolicy = () => {
+  const { data: privacyData } = usePrivacyPolicy();
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<PolicyFormValues>({
     resolver: zodResolver(PolicySchema),
     defaultValues: {
@@ -19,6 +25,14 @@ const PrivacyPolicy = () => {
       content: "",
     },
   });
+  useEffect(() => {
+    if (privacyData) {
+      reset({
+        title: privacyData.data.title,
+        content: privacyData.data.content,
+      });
+    }
+  }, [privacyData]);
   const { mutateAsync, isPending } = useUpdatePrivacyPolicy();
   const onSubmit: SubmitHandler<PolicyFormValues> = async (data) => {
     const formdata = new FormData();

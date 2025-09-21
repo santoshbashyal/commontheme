@@ -2,16 +2,22 @@ import { InputTitle } from "@/components/add-new/InputTitle";
 import TextBox from "@/components/add-post/TextBox";
 import { showErrorMessage, showSuccessMessage } from "@/lib/utils/toast";
 import { PolicySchema, type PolicyFormValues } from "@/schemas/policy";
-import { useUpdateCookiePolicy } from "@/services/cookie/cookie";
+import {
+  useCookiePolicy,
+  useUpdateCookiePolicy,
+} from "@/services/cookie/cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { BiLoader } from "react-icons/bi";
 
 const CookiePolicy = () => {
+  const { data: cookieData } = useCookiePolicy();
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<PolicyFormValues>({
     resolver: zodResolver(PolicySchema),
     defaultValues: {
@@ -19,6 +25,14 @@ const CookiePolicy = () => {
       content: "",
     },
   });
+  useEffect(() => {
+    if (cookieData) {
+      reset({
+        title: cookieData.data.title,
+        content: cookieData.data.content,
+      });
+    }
+  }, [cookieData]);
   const { mutateAsync, isPending } = useUpdateCookiePolicy();
   const onSubmit: SubmitHandler<PolicyFormValues> = async (data) => {
     const formdata = new FormData();
