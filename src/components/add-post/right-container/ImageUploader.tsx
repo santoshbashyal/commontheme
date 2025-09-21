@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 interface ImageUploaderProps {
   title: string;
   error?: string;
@@ -41,6 +41,9 @@ const ImageUploader = ({
   error,
 }: ImageUploaderProps) => {
   const [image, setImage] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    if (typeof value == "string") setImage(value);
+  }, [value]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = async (
