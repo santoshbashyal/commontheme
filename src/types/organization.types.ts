@@ -4,6 +4,7 @@ export interface Isettings {
 }
 
 export interface Settings {
+  name: string;
   site_title: string;
   logo: string;
   favicon: string;

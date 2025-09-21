@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const SettingSchema = z.object({
-  name: z.string().min(2, "Title must be at least of 2 characters"),
+  site_title: z.string().min(2, "Title must be at least of 2 characters"),
   logo: z.union([z.string().min(1, "logo is required"), z.file()]),
   favicon: z.union([z.string().min(1, "favicon is required"), z.file()]),
   metaDescription: z
