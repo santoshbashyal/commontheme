@@ -5,7 +5,6 @@ import { ROUTES } from "@/common/routes";
 import AddPost from "@/pages/post/post-add/add-post";
 import { CategoryListPage } from "@/pages/category/category-list/categry-list";
 import { CategoryAddPage } from "@/pages/category/add-category/CategoryAddPage";
-import { UsersAddPage } from "@/pages/users/add-new/UsersAddPage";
 import { PagesAdd } from "@/pages/pages-/add-pages/PagesAdd";
 import PostListPage from "@/pages/post/post-list/PostListPage";
 import UserListPage from "@/pages/users/list-users/users-list";
@@ -23,6 +22,7 @@ import PrivacyPolicy from "@/pages/privacy-policy/PrivacyPolicy";
 import CookiePolicy from "@/pages/cookie-policy/CookiePolicy";
 import ContactUs from "@/pages/contactUs/ContactUs";
 import ContactsDetail from "@/pages/contactUs/ContactsDetail";
+import UsersAddPage from "@/pages/users/add-new/UsersAddPage";
 
 const router = createBrowserRouter([
   {
