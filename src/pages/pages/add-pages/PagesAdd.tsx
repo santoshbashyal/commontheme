@@ -26,7 +26,7 @@ export const PagesAdd = () => {
     console.log(data);
   };
   return (
-    <form action="" onSubmit={handleSubmit(onsubmit)}>
+    <form onSubmit={handleSubmit(onsubmit)}>
       <div className="flex   gap-4 p-4 ">
         <div className="w-full ">
           <Controller

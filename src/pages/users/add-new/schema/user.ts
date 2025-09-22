@@ -12,9 +12,6 @@ export const UsersSchema = z.object({
   meta_title: z.string().optional(),
   meta_description: z.string().optional(),
 
-  url_friendlyTitle: z
-    .string()
-    .min(5, "url must be at least of 5 characters")
-    .optional(),
+  url_friendlyTitle: z.string().min(5, "url must be at least of 5 characters"),
 });
 export type UsersFormValues = z.infer<typeof UsersSchema>;
