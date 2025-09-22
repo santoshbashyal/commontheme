@@ -26,4 +26,7 @@ export const endpoints = {
     getAllContacts: "/contacts",
     getContactsByID: "/contacts/:id",
   },
+  posts: {
+    getAllPosts: "/posts",
+  },
 };

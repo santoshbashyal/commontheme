@@ -3,22 +3,16 @@ import ImageUploader from "@/components/add-post/right-container/ImageUploader";
 import TextBox from "@/components/add-post/TextBox";
 
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
-interface FormValues {
-  description: string;
-  email: string;
-  memberName: string;
-  memberImage: File | string;
-  password: string;
-  confirm: string;
-  chooseRole: string;
-  altImge: string;
-  urlSlug: string;
-  metaTitle: string;
-  metaDescription: string;
-}
+import { MembersSchema, type MembersFormValues } from "./schema/members";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const MembersAddPage = () => {
-  const { control, handleSubmit } = useForm<FormValues>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<MembersFormValues>({
+    resolver: zodResolver(MembersSchema),
     defaultValues: {
       memberName: "",
       memberImage: "",
@@ -33,7 +27,7 @@ const MembersAddPage = () => {
       metaDescription: "",
     },
   });
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<MembersFormValues> = (data) => {
     console.log("Form Data", data);
   };
 
@@ -49,6 +43,7 @@ const MembersAddPage = () => {
                 placeholder="Member's Name"
                 value={field.value}
                 onChange={field.onChange}
+                error={errors.memberName?.message}
               />
             )}
           />
@@ -63,7 +58,8 @@ const MembersAddPage = () => {
                   maxLength={2000}
                   wrapperClass="rounded-2xl p-4"
                   placeholder=" Begin writing here ... "
-                  textareaClass="h-60"
+                  textareaClass="h-60 w-full"
+                  error={errors.description?.message}
                 />
               )}
             />
@@ -77,6 +73,7 @@ const MembersAddPage = () => {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Email"
+                  error={errors.email?.message}
                 />
               )}
             />
@@ -90,6 +87,7 @@ const MembersAddPage = () => {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Create Password"
+                  error={errors.password?.message}
                 />
               )}
             />
@@ -103,6 +101,7 @@ const MembersAddPage = () => {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Confirm Password"
+                  error={errors.confirm?.message}
                 />
               )}
             />
@@ -117,6 +116,7 @@ const MembersAddPage = () => {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Choose role"
+                  error={errors.chooseRole?.message}
                 />
               )}
             />
@@ -133,6 +133,7 @@ const MembersAddPage = () => {
                   onchange={field.onChange}
                   title="Member Image"
                   imageBoxSize="h-40 rounded-3xl"
+                  error={errors.memberImage?.message}
                 />
               )}
             />
@@ -146,6 +147,7 @@ const MembersAddPage = () => {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Image alt text"
+                  error={errors.altImge?.message}
                 />
               )}
             />
@@ -161,7 +163,8 @@ const MembersAddPage = () => {
                   maxLength={200}
                   wrapperClass="rounded-2xl "
                   placeholder=" Enter the meta title ... "
-                  textareaClass="p-2 h-30"
+                  textareaClass="p-2 h-30 w-full"
+                  error={errors.metaTitle?.message}
                 />
               )}
             />
@@ -177,7 +180,8 @@ const MembersAddPage = () => {
                   maxLength={300}
                   placeholder="Enter the meta Description.."
                   wrapperClass="rounded-2xl"
-                  textareaClass="p-2 h-30"
+                  textareaClass="p-2 h-30 w-full"
+                  error={errors.metaDescription?.message}
                 />
               )}
             />
@@ -191,6 +195,7 @@ const MembersAddPage = () => {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="URL Friendly Title"
+                  error={errors.urlSlug?.message}
                 />
               )}
             />

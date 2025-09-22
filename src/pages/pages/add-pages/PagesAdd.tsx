@@ -1,19 +1,19 @@
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
+import { PageSchema, type PageFormValues } from "./schema/pages";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { InputTitle } from "@/components/add-new/InputTitle";
 import TextBox from "@/components/add-post/TextBox";
 import ImageUploader from "@/components/add-post/right-container/ImageUploader";
-import { UsersSchema, type UsersFormValues } from "./schema/user";
-import { InputTitle } from "@/components/add-new/InputTitle";
 
-const UsersAddPage = () => {
+export const PagesAdd = () => {
   const {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<UsersFormValues>({
-    resolver: zodResolver(UsersSchema),
+  } = useForm<PageFormValues>({
+    resolver: zodResolver(PageSchema),
     defaultValues: {
-      user_title: "",
+      page_title: "",
       image: "",
       alt_text: "",
       description: "",
@@ -22,7 +22,7 @@ const UsersAddPage = () => {
       url_friendlyTitle: "",
     },
   });
-  const onsubmit: SubmitHandler<UsersFormValues> = (data) => {
+  const onsubmit: SubmitHandler<PageFormValues> = (data) => {
     console.log(data);
   };
   return (
@@ -31,13 +31,13 @@ const UsersAddPage = () => {
         <div className="w-full ">
           <Controller
             control={control}
-            name="user_title"
+            name="page_title"
             render={({ field }) => (
               <InputTitle
                 value={field.value}
                 onChange={field.onChange}
-                placeholder="User title "
-                error={errors.user_title?.message}
+                placeholder="Page title "
+                error={errors.page_title?.message}
               />
             )}
           />
@@ -150,5 +150,3 @@ const UsersAddPage = () => {
     </form>
   );
 };
-
-export default UsersAddPage;
