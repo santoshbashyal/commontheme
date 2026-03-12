@@ -15,18 +15,18 @@ const MembersAddPage = () => {
   });
   return (
     <>
-      <div className="flex gap-4 p-4 ">
+      <div className="flex gap-4 p-4">
         <div className="w-full">
           <MembersTitle />
           <div>
             <TextBox
-              onPublish={(val) => console.log("content:", val)}
+              onChange={(val) => console.log("content:", val)}
               maxLength={2000}
               wrapperClass="rounded-2xl p-4"
               placeholder=" Begin writing here ... "
               textareaClass="h-60"
-              showButton={true}
-              buttonClass="bg-gray-700 px-7 p-1"
+              // showButton={true}
+              // buttonClass="bg-gray-700 px-7 p-1"
             />
           </div>
           <div className="my-5">
@@ -66,7 +66,7 @@ const MembersAddPage = () => {
             />
           </div>
         </div>
-        <div className=" border border-gray-300 rounded-xl p-4 shrink-0 min-w-[20.25rem] ">
+        <div className="p-4 border border-gray-300 rounded-xl min-w-[20.25rem] shrink-0">
           <div>
             <ImageUploader
               title="Member Image"
@@ -84,7 +84,7 @@ const MembersAddPage = () => {
           </div>
           <div className="my-4">
             <TextBox
-              onPublish={(e) => console.log("Metatitle", e)}
+              onChange={(e) => console.log("Metatitle", e)}
               maxLength={200}
               placeholder="Enter the meta title.."
               wrapperClass="rounded-2xl"
@@ -93,7 +93,7 @@ const MembersAddPage = () => {
           </div>
           <div className="my-4">
             <TextBox
-              onPublish={(e) => console.log("MetaDescription", e)}
+              onChange={(e) => console.log("MetaDescription", e)}
               maxLength={200}
               placeholder="Enter the meta Description.."
               wrapperClass="rounded-2xl"

@@ -15,7 +15,7 @@ const TextArea = () => {
       {placeholder.map(({ enter }, index) => (
         <div key={index}>
           <TextBox
-            onPublish={(val) => console.log("Posted:", val)}
+            onChange={(val) => console.log("Posted:", val)}
             placeholder={enter}
             maxLength={200}
             wrapperClass="mb-4 rounded-2xl"
@@ -24,7 +24,7 @@ const TextArea = () => {
 
           {/* <textarea
             name={`textarea-${index}`}
-            className="outline-0 text-gray-500 w-full resize-none"
+            className="outline-0 w-full text-gray-500 resize-none"
             rows={3}
             placeholder={enter}
           ></textarea> */}
@@ -40,12 +40,12 @@ const TextArea = () => {
       ))}
 
       {/* Input Field Below */}
-      <div className="flex gap-2 border px-4 py-3 border-gray-300 mb-4 text-sm rounded-2xl items-center">
+      <div className="flex items-center gap-2 mb-4 px-4 py-3 border border-gray-300 rounded-2xl text-sm">
         <div>
           <img src="/link.svg" alt="Link" />
         </div>
         <input
-          className="placeholder:text-gray-400 text-gray-700 outline-0 w-full"
+          className="outline-0 w-full text-gray-700 placeholder:text-gray-400"
           type="text"
           placeholder="URL Friendly Title"
         />
